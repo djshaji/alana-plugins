@@ -1,0 +1,67 @@
+Amp.o: Amp.cc basics.h ladspa.h Amp.h dsp/util.h dsp/IIR1.h dsp/IIR2.h \
+ dsp/complex.h dsp/Oversampler.h dsp/FIR.h dsp/util.h dsp/sinc.h \
+ dsp/Sine.h dsp/windows.h dsp/RBJ.h dsp/IIR2.h dsp/ToneStack.h \
+ dsp/TDFII.h dsp/Compress.h dsp/RMS.h dsp/IIR1.h Descriptor.h \
+ dsp/polynomials.h
+AutoFilter.o: AutoFilter.cc basics.h ladspa.h AutoFilter.h dsp/SVF.h \
+ dsp/Lorenz.h dsp/Roessler.h dsp/RMS.h dsp/IIR2.h dsp/complex.h \
+ dsp/IIR1.h Descriptor.h dsp/RBJ.h dsp/IIR2.h dsp/polynomials.h
+CabIII.o: CabIII.cc basics.h ladspa.h dsp/RBJ.h dsp/IIR2.h dsp/complex.h \
+ Cabinet.h dsp/util.h dsp/Oversampler.h dsp/FIR.h dsp/util.h dsp/sinc.h \
+ dsp/Sine.h dsp/windows.h dsp/v4f.h dsp/v4f_FIR.h dsp/v4f.h \
+ dsp/v4f_IIR2.h Descriptor.h CabIIIModels.h
+CabIV.o: CabIV.cc basics.h ladspa.h dsp/RBJ.h dsp/IIR2.h dsp/complex.h \
+ Cabinet.h dsp/util.h dsp/Oversampler.h dsp/FIR.h dsp/util.h dsp/sinc.h \
+ dsp/Sine.h dsp/windows.h dsp/v4f.h dsp/v4f_FIR.h dsp/v4f.h \
+ dsp/v4f_IIR2.h Descriptor.h CabIV_64_128.h
+Chorus.o: Chorus.cc basics.h ladspa.h Chorus.h dsp/Sine.h dsp/Roessler.h \
+ dsp/Lorenz.h dsp/Delay.h dsp/util.h dsp/FPTruncateMode.h dsp/IIR1.h \
+ dsp/IIR2.h dsp/complex.h dsp/RBJ.h dsp/IIR2.h Descriptor.h
+Click.o: Click.cc basics.h ladspa.h dsp/RBJ.h dsp/IIR2.h dsp/complex.h \
+ dsp/White.h Click.h dsp/IIR1.h dsp/IIR2.h dsp/util.h Descriptor.h \
+ Cabinet.h dsp/Oversampler.h dsp/FIR.h dsp/util.h dsp/sinc.h dsp/Sine.h \
+ dsp/windows.h dsp/v4f.h dsp/v4f_FIR.h dsp/v4f.h dsp/v4f_IIR2.h \
+ waves/click.h waves/profit.h
+Compress.o: Compress.cc basics.h ladspa.h Compress.h dsp/util.h \
+ dsp/Compress.h dsp/RMS.h dsp/IIR1.h dsp/util.h dsp/polynomials.h \
+ dsp/FIR.h dsp/sinc.h dsp/Sine.h dsp/windows.h Descriptor.h
+Eq.o: Eq.cc basics.h ladspa.h dsp/Sine.h Eq.h dsp/util.h dsp/Eq.h \
+ dsp/IIR2.h dsp/complex.h dsp/RBJ.h dsp/IIR2.h dsp/v4f.h dsp/v4f_IIR2.h \
+ dsp/v4f.h Descriptor.h
+Fractals.o: Fractals.cc basics.h ladspa.h Fractals.h dsp/Lorenz.h \
+ dsp/Roessler.h dsp/IIR1.h Descriptor.h
+interface.o: interface.cc version.h basics.h ladspa.h Cabinet.h \
+ dsp/util.h dsp/Oversampler.h dsp/FIR.h dsp/util.h dsp/sinc.h dsp/Sine.h \
+ dsp/windows.h dsp/v4f.h dsp/v4f_FIR.h dsp/v4f.h dsp/v4f_IIR2.h Chorus.h \
+ dsp/Sine.h dsp/Roessler.h dsp/Lorenz.h dsp/Delay.h dsp/FPTruncateMode.h \
+ dsp/IIR1.h dsp/IIR2.h dsp/complex.h dsp/RBJ.h dsp/IIR2.h Phaser.h Sin.h \
+ Fractals.h Reverb.h Compress.h dsp/Compress.h dsp/RMS.h dsp/IIR1.h \
+ dsp/polynomials.h dsp/FIR.h dsp/sinc.h dsp/windows.h Click.h Eq.h \
+ dsp/Eq.h Saturate.h dsp/RMS.h dsp/Butterworth.h dsp/ChebyshevPoly.h \
+ White.h dsp/White.h AutoFilter.h dsp/SVF.h Amp.h dsp/ToneStack.h \
+ dsp/TDFII.h Pan.h Scape.h ToneStack.h Noisegate.h Descriptor.h
+Noisegate.o: Noisegate.cc basics.h ladspa.h Noisegate.h dsp/util.h \
+ dsp/IIR2.h dsp/complex.h dsp/RBJ.h dsp/IIR2.h dsp/RMS.h dsp/Delay.h \
+ dsp/util.h dsp/FPTruncateMode.h dsp/IIR1.h Descriptor.h
+Pan.o: Pan.cc basics.h ladspa.h dsp/RBJ.h dsp/IIR2.h dsp/complex.h Pan.h \
+ dsp/Delay.h dsp/util.h dsp/FPTruncateMode.h dsp/IIR2.h Descriptor.h
+Phaser.o: Phaser.cc basics.h ladspa.h Phaser.h dsp/Sine.h dsp/Roessler.h \
+ dsp/Delay.h dsp/util.h dsp/FPTruncateMode.h dsp/IIR1.h Descriptor.h
+Reverb.o: Reverb.cc basics.h ladspa.h Reverb.h dsp/Delay.h dsp/util.h \
+ dsp/FPTruncateMode.h dsp/IIR1.h dsp/Sine.h dsp/util.h Descriptor.h
+Saturate.o: Saturate.cc basics.h ladspa.h Saturate.h dsp/util.h \
+ dsp/Oversampler.h dsp/FIR.h dsp/util.h dsp/sinc.h dsp/Sine.h \
+ dsp/windows.h dsp/RMS.h dsp/Compress.h dsp/RMS.h dsp/IIR1.h dsp/IIR1.h \
+ dsp/IIR2.h dsp/complex.h dsp/Butterworth.h dsp/IIR2.h dsp/Delay.h \
+ dsp/FPTruncateMode.h dsp/ChebyshevPoly.h Descriptor.h dsp/polynomials.h \
+ dsp/RBJ.h
+Scape.o: Scape.cc basics.h ladspa.h Scape.h dsp/Sine.h dsp/Roessler.h \
+ dsp/Lorenz.h dsp/Delay.h dsp/util.h dsp/FPTruncateMode.h dsp/IIR1.h \
+ dsp/IIR2.h dsp/complex.h dsp/RBJ.h dsp/IIR2.h dsp/SVF.h Descriptor.h
+Sin.o: Sin.cc basics.h ladspa.h Sin.h dsp/Sine.h Descriptor.h
+ToneStack.o: ToneStack.cc basics.h ladspa.h dsp/util.h dsp/Sine.h \
+ ToneStack.h dsp/windows.h dsp/Sine.h dsp/ToneStack.h dsp/util.h \
+ dsp/windows.h dsp/TDFII.h Descriptor.h
+White.o: White.cc basics.h ladspa.h White.h dsp/White.h dsp/IIR1.h \
+ Descriptor.h
+polynomials.o: dsp/polynomials.cc dsp/../basics.h dsp/../ladspa.h
