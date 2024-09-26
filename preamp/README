@@ -1,0 +1,8 @@
+This directory conatins source code for a LADSPA plugin emulating
+a valve-based preamplifier.
+
+It comes under the GNU Public License.
+
+Type 'make' and then 'sudo make install' to install.
+
+Visit http://quitte.de/dsp/preamp.html for more information.

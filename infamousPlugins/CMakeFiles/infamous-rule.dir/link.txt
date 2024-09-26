@@ -1,0 +1,1 @@
+/usr/bin/cc -rdynamic "CMakeFiles/infamous-rule.dir/src/rule.c.o" -o infamous-rule 

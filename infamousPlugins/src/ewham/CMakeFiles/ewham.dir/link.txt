@@ -1,0 +1,1 @@
+/usr/bin/cc -fPIC  -Wall -g -Og -msse2 -mfpmath=sse -ffast-math -shared -Wl,-soname,ewham.so -o ewham.so CMakeFiles/ewham.dir/ewham.c.o CMakeFiles/ewham.dir/retuner.c.o  -lfftw3f -lm -lzita-resampler 

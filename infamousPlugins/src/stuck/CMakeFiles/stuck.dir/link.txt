@@ -1,0 +1,1 @@
+/usr/bin/cc -fPIC  -Wall -g -Og -msse2 -mfpmath=sse -ffast-math -shared -Wl,-soname,stuck.so -o stuck.so CMakeFiles/stuck.dir/stuck.c.o CMakeFiles/stuck.dir/rms_calc.c.o  -lm 

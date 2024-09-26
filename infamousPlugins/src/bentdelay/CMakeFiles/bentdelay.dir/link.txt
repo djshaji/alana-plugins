@@ -1,0 +1,1 @@
+/usr/bin/cc -fPIC  -Wall -g -Og -msse2 -mfpmath=sse -ffast-math -shared -Wl,-soname,bentdelay.so -o bentdelay.so CMakeFiles/bentdelay.dir/falter.c.o  -lm 

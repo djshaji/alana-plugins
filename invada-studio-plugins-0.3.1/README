@@ -1,0 +1,84 @@
+INTRODUCTION
+============
+Thanks for taking the time to try out these plugins.
+Feedback / comments welcome.
+
+
+
+CONTENTS
+========
+The following plugins are included:
+
+Utility Plugins
+* Input Module => alter gain, balance, width, phase on a stereo signal
+
+Filter Plugins
+* Low Pass Mono    => gentle low pass filter
+* Low Pass Stereo  => gentle low pass filter
+* High Pass Mono   => gentle high pass filter
+* High Pass Stereo => gentle high pass filter
+
+Simulation Plugins
+* Tube - Mono   => Valve warmth/distortion simulation
+* Tube - Stereo => Valve warmth/distortion simulation
+
+Dynamics Plugins
+* Compressor - Mono   => Peak/RMS softclipping compressor
+* Compressor - Stereo => Peak/RMS softclipping compressor
+
+Reverb Plugins
+* ER Reverb - Mono In    => Early reflection based reverb
+* ER Reverb - Sum L+R In => Early reflection based reverb
+
+
+
+INSTALLATION
+============
+No binaries are included, you'll need to compile the plugins yourself. 
+
+
+
+BUILDING
+========
+To build the plugins the you'll need the following items installed:
+* a working build environment with core includes
+* the ladspa header file (ladspa.h)
+
+Go to the directory that was created when you unpacked this archive and then run:
+
+make
+(as root) make install
+
+The plugins will install into "/usr/local" by default. (change the Makefile if you'd like to have them in an alternate location)
+
+
+
+BUILDING (Debian and derivatives)
+=================================
+Packages for Debian and derivatives (Ubuntu etc) can have deb packages built from this archive. You'll need a Debian build environment.
+To install the build environment and package dependencies run the following:
+
+sudo apt-get install build-essential debhelper fakeroot ladspa-sdk 
+
+Go to the directory that was created when you unpacked this archive and then run:
+
+dpkg-buildpackage -rfakeroot -tc
+
+Once done you'll find a 'deb' package for your system in the directory above. Use your favourite package manager to install.
+The plugins will install into "/usr" by default. 
+
+
+
+KNOWN ISSUES
+============
+* Some applications don't obey the 'LOGARITHMIC' hint which makes selecting low values on the ports that need it a bit of a PITA.
+* The compressor has a gain reduction meter but only two applications I know of support the 'output control' port type - Ardour & Hydrogen.
+* I'd love to supply presents but I'm either to stupid to work out how to do it, the lrdf library is broken, or no host applications support it yet. If anyone knows how please drop me an email.
+* the 'DC Offset' in the tube plugins can do strange things to your meters (but nice things to the sound) - whenever I use it I send the output through Steve Harris's 'DC Offset remover' to clean it back up. One day I'll figure out how to remove the DC after it's gone through the tube.
+
+
+
+
+Enjoy!
+fraser@arkhostings.com
+https://launchpad.net/invada-studio

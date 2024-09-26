@@ -1,0 +1,257 @@
+Welcome to the INFAMOUS Plugins README
+
+These are audio plugins in the LV2 format, developed for linux. Most are suitable for live use (exceptions are noted in the description). Installation is discussed first here, then the plugins below. Some are experimental/not that useful so they are not included in the batch install but are described below in case you might find them interesting.
+
+To install, fulfill the dependencies (below), then run the commands:
+    mkdir build
+    cd build 
+    cmake ..
+    make
+    sudo make install
+
+To install the package under a specific library path (i.e. if you are using fedora), use the LIBDIR cmake variable:
+    mkdir build
+    cd build
+    cmake -DLIBDIR=lib64 ..
+    make
+    sudo make install
+
+To install the MOD gui resources, use the optional variable '-DMOD=ON' to cmake.
+
+Once this is complete you can already start using the plugins in your favorite LV2 host
+
+There is also an uninstall available:
+    sudo make uninstall
+
+Dependencies:
+    cmake
+    ntk
+    ntk-fluid
+    cairo
+    lv2-dev
+    zita-resampler
+    fftw3
+
+If you do not have ntk and ntk-fluid already installed use these commands to install:
+    git clone https://github.com/falkTX/ntk.git
+    cd ntk
+    ./waf configure
+    ./waf
+    sudo ./waf install
+
+If you do not like GUIs or cannot fulfill the ntk dependencies, cmake will detect that cairo and/or ntk aren't installed and will only install the host-generated UI versions.  
+
+HOW TO INSTALL THE "EXPERIMENTAL" PLUGINS:
+Each plugin can be built and installed individually by navigating to the directory src/$pluginName. If you are using guis you can do an out of source build by performing:
+    mkdir build
+    cd build
+    cmake ..
+    make
+    sudo make install 
+
+
+Now lets talk about what you're installing:
+
+==========================================
+1. Cellular Automaton Synth
+
+This synthesizer plugin is an additive synthesizer, where 16 harmonics are added according to rules of elementary cellular automata. A rule is created and determines whether a cell will survive, die, or be created based on its previous state and its neighbors. Thus a harmonic will either play or be silent according to its associated cell's state. The 16 cells are on a torus where the ends wrap around to meet, therefore the highest harmonic influences the state of the first harmonic. This synth has no filter, so harmonics must be controlled through the rule and initial condition. To assist in your sound design there is a command line utility included called rule that will print out the cell states in sequence (see rule on line 53). For more information regarding Cellular Automaton in general read wikipedia under Elementary Cellular Automaton.
+
+It is unlimitedly polyphonic and has 2 LFOs. It also features an ADBSSR envelope generator for the amplitude envelope. Using the GUI you get to select each bit of the rule and initial condition. You can also click to the right of the row of buttons to set the value directly. Also if you click on HAL 9000 it will randomize all the parameters (except master gain and channel).
+
+Parameter Description:
+    CHANNEL - Midi channel, set to 0 for all channels
+    MASTER_GAIN - total volume
+    RULE - rule for determining next state in cellular automaton
+    CELL_LIFE - length between cell states measured in beats (most hosts default to 120bpm)
+    INIT_CELLS - initial condition of cells when a note is played
+    NHARMONICS - number of harmonics added in
+    HARM_MODE - determines gains of the harmonics 
+    HARM_WIDTH - std. deviation of random detuning of harmonics in cents
+    WAVE - basic Waveform of the harmonics
+    ENV_A - attack time
+    ENV_D - decay time
+    ENV_B - break point gain (to switch between decay and swell)
+    ENV_SWL - swell time
+    ENV_SUS - sustain gain
+    ENV_R - release time
+    AMOD_WAV - amplitude modulation waveform
+    AMOD_FREQ - amplitude modulation frequency
+    AMOD_GAIN - amplitude modulation gain
+    FMOD_WAV - frequency modulation waveform
+    FMOD_FREQ - frequency modulation frequency
+    FMOD_GAIN - frequency modulation gain
+
+
+
+
+==========================================
+1b. infamous-rule
+
+This program is less necessary as the new GUI shows the first 20 states of the cells. The source is still there and compiles easily with a direct call to gcc.
+This visualizes cell automata on a torus. Run it by opening a terminal run 
+
+    infamous-rule <rule number> <initial condition>
+    
+The least significant digit corresponds to the first harmonic
+
+
+==========================================
+2. Envelope Follower
+
+This is a fully featured envelope follower plugin. It can be used for pumping the gain with the bass or all sorts of other things that I don't really know about. I prefer doing things like having an envelope controlled distortion or flange with it. Someone just wanted it so I made it. It sends a midi control value according to the amplitude of the input audio. I have also added a separate version that outputs an LV2 CV.
+
+
+Parameter Description: 
+    PEAKRMS - blend of peak and/or rms value for amplitude
+    THRESHOLD - audio low value mapped MINV
+    SATURATION - audio high value mapped to MAXV (anything greater still outputs MAXV)
+    ATIME - rise time of the output
+    DTIME - fall time of the output
+    CHANNEL - Midi channel to send output over
+    CONTROL_NO - Midi control # to change
+    MINV - minimum midi value to send
+    MAXV - maximum midi value to send
+    REVERSE - switches direction of the midi output (larger input amplitude -> smaller midi value)
+    CMINV - minimum CV to send
+    CMAXV - maximum CV to send
+    CREVERSE - switches direction of the CV output
+
+2b. Envelope Follower CV
+
+Due to limited CV support in hosts, the envelope follower had the CV port disabled. This second version is to be used for CV and has no midi port.
+
+===========================================
+3. Hip2B
+
+This is a distortion/destroyer plugin that is even more fun than I imagined. Inspired by effect pedals by dwarfcraft, this takes your analog signal and turns it into a square wave. It gives you a glitchy type effect. It was originally meant to be pretty minimal, but I decided there wasn't a good reason to be so a simple amplifier was added to turn it down, and some basic DC offset removal was added. Its not limited in polyphony or anything, it is simply distorting your signal to be a bandlimited square wave. Basically its a switching function with hysteresis. Or think of it as a bit crusher that creates 1 bit audio. Play with the up and down threshold parameters to change the square wave pulse width and have some fun. You'll find lower values give more sustain, but stay away from 0.0 on those two, it gets really loud and noisy. Unless thats what you want. Be my guest. Depending on your noise floor, other low values may be problematic in the same light.
+
+Parameter Description: 
+    UP - threshold that the input must cross for the square wave to rise
+    DOWN - threshold that the input must cross for the square wave to fall
+    OCTAVE - change the octave of the square wave output (down to -2)
+    INGAIN - input gain, also affects the output signal in the mix, use to get your signal passing the thresholds
+    WETDRY - mix of the original signal with the square signal
+    OUTGAIN - output gain
+
+===========================================
+4. cheap distortion
+
+Another distortion plugin, but this one I wanted to get it as light as possible. I haven't benchmarked it, but using some hackery on the bits I accomplished a pretty nice saturation function waveshaper using only a bitshift and an integer add. Thats right, not a single floating point operation! However this cheapness and hackery comes at a cost that its using undefined behavior and breaks some rules or at least is highly not recommended. It works when compiled with GCC on x86 systems. Go ahead and try it, the worst that happens is that it sounds awful. On machines with different endianness it will fail for sure. If you experience this I can easily make one for the other endian machines. Just let me know. Because the goal was super cheap computation, there is no input or output gains, so make use of your simple amplifier plugins. All in all though it worked out better than I dreamed. It even has 3 different waveshapes of increasing "aggression". On 2 & 3 settings, you'll probably want a gate, because it has really high gain for values near zero.
+
+Parameter Description:
+    AGGRESSION - wave shape, higher basically means more gain
+
+=============================================
+5. stuck
+
+This is a clone of the electro-harmonix freeze. It drones the note being played when the "Stick It!" port is set to 1 (or the CV port input goes above 1), causing the note to be "stuck". Once the port falls below 1 the drone is released with a decay set in seconds. The drone is added to the dry signal (so original signal is passed through at all times un-processed). This plugin is pretty useless except in live situations, though I'd love someone to creatively prove me wrong.
+
+    STICKIT - control the drone being on (>=1) or off (<1)
+    DRONEGAIN - gain of drone
+    RELEASE - time of drone decay in seconds
+
+5b. stuck stacker
+
+This is identical to the stuck but it does not pass the dry signal through at all. This allows you to put several together in parallel without changing the dry signal gain.
+
+=============================================
+6. power cut
+
+This effect is commonly called tape stop. Another one I might not actually use, but the DSP was fun anyway. It just copies the audio through until the "Pull the Plug!" port is toggled to 1 (or the CV trigger port goes above 1). Then it slows the audio down gradually to a complete stop and outputs silence until the trigger is released, much like unplugging the power chord of a record player or maybe tape player. I've never heard this happen to a tape player. A turntable actually has enough inertia. Anyway, you can adjust the length of the decay and the curve. Its pretty fun. With some automation this can make some crazy glitch type effects.
+
+    PULL THE PLUG - start the decay (>=1) or turn it off/reset it(<1)
+    DECAY TIME - length of decay in seconds
+    DECAY CURVE - the shape of the decay, concave (logarithmic) slows more and more with time, convex (exponential) slows less and less with time
+
+=============================================
+7. power up
+
+This is the opposite of the power cut. It "winds up" rather than down, or goes from silence when off, to slowly speeding up to full speed in the amount of time set by the control. NOTE THIS PLUGIN IS ABSOLUTELY NOT USEABLE LIVE! It introduces nearly 10 seconds of latency. But in a recording context your modern DAW will compensate. I wasn't even going to do this because of the non-causal DSP but then the math was challenging and I couldn't back down. The latency could be dynamic but I have no idea how well hosts would cope with that, so I chose to leave it static.
+
+    FIRE IT UP - start the startup (>=1) or turn it off/reset it(<1)
+    STARTUP TIME - length of startup in seconds
+    STARTUP CURVE - the shape of the startup, concave (logarithmic) starts quickly then changes less and less with time, convex (exponential) takes a while to get started then quickly approaches normal speed. 
+
+=============================================
+8. ewham
+
+I wanted a whammy style pitchshifter and found folks weren't quite satisfied with the alternatives. This one is based on the algorithm in Fons Adriaensen's AT1 pitch corrector. I haven't benchmarked mine to see if its better than others but considering its sitting around 4% DSP load I think its not too shabby. It does incur 128 samples of latency. It could do better but the sound quality might suffer some. Its geared mostly toward voice but works quite well for guitar too. It will struggle with polyphonic sounds, but works great for leads.
+
+    EXPRESSION - This would be what you tie your midi expression pedal to. It blends the pitch shift from the start to the finish value
+    START - Pitch shift amount (in semitones) when the expression is at 0
+    FINISH - Pitch shift amount (in semitones) when the expression is at 1
+    MODE - determines if dry signal is mixed in (harmonizer) or not (classic shifter). Chorus mode makes the detune more fine grained (cents instead of semitones) so you can use the expression to dial in more or less chorus effect
+    LOCK MODE - this can allow the pitch shift to go smoothly to any value, slide to the nearest semitone when expression stops changing, or to jump directly from semitone to semitone
+
+=================================
+9. duffer
+
+*NOT INSTALLED BY DEFAULT* This is a duffing oscillator driven by the input. The duffing oscillator is interesting because it exhibits chaos. The system is simulated by a standard RK4 algorithm, but with each input sample treated as a full second to get more movement from the model. If none of that makes sense just know its not the most musical thing, but you can have a bit of fun making weird noises with it. It can be thought of a bit like a speaker but instead of moving a paper cone, the coil drives a spring side to side that has 2 magnets pulling it in opposite directions all the time (creating non-linear and chaotic behavior). This plugin has a check; if the output begins to grow too large it will reset the state to zero and resume, to allow unstable settings. There is an output to indicate if this condition is being triggered. Its not a big deal when this is triggered, but know that you're more hearing that artificial nonlinearity of the reset than the dynamics of the actual system, and that's not as scientifically intriguing. One tip: when using negative spring nonlinearities keep the spring stiffness very large if you want to avoid triggering the instability reset.
+
+    DAMPING - damps the "spring"
+    SPRING NONLINEARITY - changes the nature of the "spring"
+    INPUT GAIN - adjust how hard the "spring" is driven
+    UNSTABLE! - output to tell if the system is diverging (and artificially reset)
+
+=================================
+10. lushlife
+
+This is a simulated double tracking plugin capable of everything from a thin beatle effect to thick lush choruses to weird outlandish effects. It is primarily for vocals though it works on any monophonic signal. Utilizing 6 channels of doubles that can be individually detuned, delayed, panned, and mixed (or bypassed), lushlife is fully modulation ready and includes lfos for the delay and pitch shifting of each double. The host-generated UI allows you to go to very extreme values, but the GUI (shown) just uses the cleanest settings. 
+
+
+    MASTER GAIN - overall gain
+    DRY GAIN - gain of unshifted signal
+    DRY PAN - pan of unshifted signal
+    LFO SHAPE - blend of sine and random lfo wave
+    LFO SYNC - while 1 all lfos phase is reset
+    WOOSH N - label for parameter group of each of the 6 channels
+      ACTIVE - turns on the doubled channel
+      DETUNE - changes the pitch of the channel in semitones
+      DELAY - changes the delay of the channel in milliseconds
+      GAIN - changes the gain of the channel
+      PAN - changes the panning of the channel
+      DETUNE LFO AMT - semitone range the channel's detune is modulated
+      DETUNE LFO FREQ - frequency of the detune modulation for the channel
+      DELAY LFO AMT - millisecond range the channel's lay is modulated
+      DELAY LFO FREQ - frequency of the delay modulation for the channel
+
+=================================
+11. playback modulation shifter
+
+*NOT INSTALLED BY DEAULT* An experimental plugin that plays back the audio at a reduced rate for a pitch shift, then raises playback rate to catch up to the input. You can select what the period of this cycle is and the duty cycle or percentage of the cycle is the low playback rate. The low rate is determined by the pitch setting.
+
+
+    SHIFT - pitch adjustment in semitones
+    PERIOD - time in milliseconds of the cycle of low then high playback rate
+    DUTY - percentage of the cycle that is low playback rate 
+
+=================================
+12. mindi
+
+this plugin was made for the MOD ecosystem, but may be of some use outside of that application. It is a mini MIDI message maker. Simply compose a midi message and enable it and it will send out the message. It also sends a message whenever you change values so you can use it to control midi CCs for example. It can compose and send sysex type messages, but not practical ones.
+
+
+    MSGTYPE - note on/off, CC, PG, poly pressure, channel pressure, pitchbend
+    CHAN - channel 0-15
+    NOTECCPG - note, CC, or PG number
+    VALUE - value for CCs, pressure, pitchbend, and velocity for notes, ignored for PG
+    DELAY - send a message N milliseconds after the plugin is first created
+    AUTOFF - automatically send note-off messages when the enable is turned off and in note-on mode (makes mindi a practical one note trigger)
+    MOMENT - button to send a midi message with MOMENTARYVALUE when pressed and a second message with VALUE when released (which will be a note-off message when AUTOFF is used to turn off note-on messages) 
+
+=================================
+13. octolo
+
+A combination tremolo octave (see what I did there?). I keep wanting to make a CPU cheap octaver, and this is the closest I've gotten. By using the tremolo effect I'm able to play back the sounds at different speeds to achieve an octave up and octave down effect. At long tremolo lengths (slow speed) you will notice the timing effects which may make it a bit unweildy for certain things. With short lengths its not a problem.
+
+
+    LENGTH - number of beats per tremolo cycle
+    DRY - gain of dry signal (no tremolo effect)
+    WET -  gain of unshifted voice (only tremolo effect)
+    OCTDOWN - gain of octave down voice
+    OCTUP - gain of octave up voice
+    SLOPE - speed of voice fade ("shape" of the tremolo effect)
+    SEQUENCE - pattern that voices play back in, if voice is 0 there is silence at that point in the sequence
+    OVERLAP - begin playing the next voice before the previous is faded out
+

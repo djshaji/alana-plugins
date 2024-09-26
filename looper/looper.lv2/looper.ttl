@@ -1,0 +1,104 @@
+@prefix doap:  <http://usefulinc.com/ns/doap#> .
+@prefix lv2:   <http://lv2plug.in/ns/lv2core#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix units: <http://lv2plug.in/ns/extensions/units#> .
+
+# First the type of the plugin is described.  All plugins must explicitly list
+# `lv2:Plugin` as a type.  A more specific type should also be given, where
+# applicable, so hosts can present a nicer UI for loading plugins.  Note that
+# this URI is the identifier of the plugin, so if it does not match the one in
+# `manifest.ttl`, the host will not discover the plugin data at all.
+<http://shaji.in/plugins/looper>
+	a lv2:Plugin ,
+		lv2:AmplifierPlugin ;
+# Plugins are associated with a project, where common information like
+# developers, home page, and so on are described.  This plugin is part of the
+# LV2 project, which has URI <http://lv2plug.in/ns/lv2>, and is described
+# elsewhere.  Typical plugin collections will describe the project in
+# manifest.ttl
+	lv2:project <http://lv2plug.in/ns/lv2> ;
+# Every plugin must have a name, described with the doap:name property.
+# Translations to various languages can be added by putting a language tag
+# after strings as shown.
+	doap:name "Looper Plugin";
+	doap:license <http://opensource.org/licenses/isc> ;
+	lv2:optionalFeature lv2:hardRTCapable ;
+	lv2:port [
+		a lv2:InputPort ,
+			lv2:ControlPort ;
+		lv2:index 0 ;
+		lv2:symbol "toggle_rec" ;
+		lv2:name "toggle_rec" ;
+		lv2:default 0.0 ;
+		lv2:minimum 0 ;
+		lv2:maximum 1 ;
+	] , [
+		a lv2:InputPort ,
+			lv2:ControlPort ;
+		lv2:index 1 ;
+		lv2:symbol "toggle_play" ;
+		lv2:name "Toggle Playback" ;
+		lv2:default 0.0 ;
+		lv2:minimum 0 ;
+		lv2:maximum 1 ;
+	] , [
+		a lv2:InputPort ,
+			lv2:ControlPort ;
+		lv2:index 2 ;
+		lv2:symbol "file_buffer" ;
+		lv2:name "Choose File" ;
+		lv2:default 0.0 ;
+		lv2:minimum 0 ;
+		lv2:maximum 1 ;
+	] ,  [
+		a lv2:InputPort ,
+			lv2:ControlPort ;
+		lv2:index 3 ;
+		lv2:symbol "gain" ;
+		lv2:name "gain" ;
+		units:unit units:db ;
+
+		lv2:default 1.0 ;
+		lv2:minimum 0 ;
+		lv2:maximum 6 ;
+	] , [
+		a lv2:InputPort ,
+			lv2:ControlPort ;
+		lv2:index 4 ;
+		lv2:symbol "buffer_size_control" ;
+		lv2:name "Buffer Size" ;
+		lv2:default 1024 ;
+		lv2:minimum 128 ;
+		lv2:maximum 1048576 ;
+	] , [
+		a lv2:InputPort ,
+			lv2:ControlPort ;
+		lv2:index 5 ;
+		lv2:symbol "start" ;
+		lv2:name "Trim Start" ;
+		lv2:default 0 ;
+		lv2:minimum 0 ;
+		lv2:maximum 100 ;
+	] , [
+		a lv2:InputPort ,
+			lv2:ControlPort ;
+		lv2:index 6 ;
+		lv2:symbol "end" ;
+		lv2:name "Trim End" ;
+		lv2:default 100 ;
+		lv2:minimum 0 ;
+		lv2:maximum 100 ;
+	] , [
+		a lv2:AudioPort ,
+			lv2:InputPort ;
+		lv2:index 7 ;
+		lv2:symbol "input" ;
+		lv2:name "In"
+	] , [
+		a lv2:AudioPort ,
+			lv2:OutputPort ;
+		lv2:index 8 ;
+		lv2:symbol "output" ;
+		lv2:name "Out"
+	] .

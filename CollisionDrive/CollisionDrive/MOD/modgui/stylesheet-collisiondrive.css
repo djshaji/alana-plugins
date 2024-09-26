@@ -1,0 +1,222 @@
+/* SKINS */
+.mod-collision-pedal{{{cns}}} {
+    border-radius: 15px;
+}
+
+.mod-collision-pedal-black{{{cns}}} {
+    background-image: url(/resources/pedals/boxy/black.png{{{ns}}});
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 431px;
+    position: relative;
+    width: 230px;
+}
+
+/* THE AUTHOR */
+.mod-collision-pedal{{{cns}}} .mod-plugin-brand h1 {
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    left: 80px;
+    line-height: 1;
+    margin: 0;
+    position: absolute;
+    top: 23px;
+}
+
+/* = PLUGIN'S NAME
+================================================ */
+.mod-collision-pedal{{{cns}}} .mod-plugin-name {
+    left:30px;
+    color: #fff;
+    overflow:hidden;
+    position:absolute;
+    right:30px;
+    text-align:center;
+    top:340px;
+}
+
+.mod-collision-pedal{{{cns}}} .mod-plugin-name h1 {
+    font-family:"Questrial";
+    font-size:21px;
+    line-height:1;
+}
+
+/* CONTROLS */
+.mod-collision-pedal{{{cns}}} .mod-control-group {
+    bottom: 149px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    height: 71px;
+    left: 20px;
+    position: absolute;
+    right: 8px;
+    top: 27px;
+}
+
+.mod-collision-pedal{{{cns}}} .mod-control-group > div {
+    margin-right: 2px;
+}
+
+.mod-collision-pedal{{{cns}}} .mod-pedal-input,
+.mod-collision-pedal{{{cns}}} .mod-pedal-output {
+    top: 66px;
+}
+
+/* = LIGHT ON/OFF
+================================================ */
+.mod-collision-pedal{{{cns}}} .mod-light {
+    background-position:center center;
+    background-repeat:no-repeat;
+    height:32px;
+    left:10px;
+    position:absolute;
+    right:10px;
+    top:235px;
+}
+
+/* = FOOTSWITCH
+================================================ */
+.mod-collision-pedal{{{cns}}} .mod-footswitch {
+    background-image:url(/resources/pedals/footswitch.png{{{ns}}});
+    background-position:bottom center;
+    background-repeat:no-repeat;
+    background-size:auto 132px;
+    bottom: 95px;
+    left: 13px;
+    right: 13px;
+    cursor:pointer;
+    height:66px;
+    width: 66px;
+    margin: auto;
+    position:absolute !important;
+}
+.mod-collision-pedal{{{cns}}} .mod-footswitch.on {
+    background-position-y: top !important
+}
+
+/* KNOB 
+================================================ */
+.mod-collision-pedal{{{cns}}} .mod-knob {
+    float: left;
+    height: 81px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 61px;
+}
+
+.mod-collision-pedal{{{cns}}} .mod-knob .mod-knob-image {
+    background-image: url(/resources/knobs/boxy/black.png{{{ns}}});
+    background-position: left 0px;
+    background-repeat: no-repeat;
+    background-size: auto 61px;
+    height: 61px;
+    margin-top: 20px;
+    position: relative;
+    width: 61px;
+    z-index: 2;
+}
+
+.mod-collision-pedal{{{cns}}} .mod-knob .mod-knob-step-image {
+    background-image: url(/resources/knobs/boxy/black_6steps.png{{{ns}}});
+    background-position: left 0px;
+    background-repeat: no-repeat;
+    background-size: auto 61px;
+    height: 61px;
+    margin-top: 20px;
+    position: relative;
+    width: 61px;
+    z-index: 2;
+}
+
+.mod-collision-pedal{{{cns}}} .mod-knob .mod-knob-title {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    height:18px;
+    left: 0;
+    overflow:hidden;
+    position: absolute;
+    right: 0;
+    text-transform: uppercase;
+    top: 0;
+    z-index: 1;
+}
+
+/* TUNE KNOB
+================================================ */
+.mod-collision-pedal{{{cns}}} .mod-tune {
+    float: left;
+    height: 81px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 61px;
+}
+
+.mod-collision-pedal{{{cns}}} .mod-tune .mod-tune-image {
+    background-image: url(/resources/knobs/boxy/tune.png{{{ns}}});
+    background-position: left 0px;
+    background-repeat: no-repeat;
+    background-size: auto 61px;
+    height: 61px;
+    margin-top: 30px;
+    position: relative;
+    width: 61px;
+    z-index: 2;
+}
+
+.mod-collision-pedal{{{cns}}} .mod-tune .mod-tune-blue-image {
+    background-image: url(/resources/knobs/boxy/tune_blue.png{{{ns}}});
+    background-position: left 0px;
+    background-repeat: no-repeat;
+    background-size: auto 61px;
+    height: 61px;
+    margin-top: 30px;
+    position: relative;
+    width: 61px;
+    z-index: 2;
+}
+
+.mod-collision-pedal{{{cns}}} .mod-tune .mod-tune-title {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    height:18px;
+    left: 0;
+    overflow:hidden;
+    position: absolute;
+    right: 0;
+    text-transform: uppercase;
+    top: 10px;
+    z-index: 1;
+}
+
+/* SEPARATOR */
+.mod-collision-pedal{{{cns}}} .mod-separator {
+    display: inline-block;
+    float: left;
+    height: 61px;
+    margin-top: 2px;
+    width: 61px;
+}
+
+/* SEPARATOR */
+.mod-collision-pedal{{{cns}}} .mod-smallseparator {
+    display: inline-block;
+    float: left;
+    height: 61px;
+    margin-top: 2px;
+    width: 25px;
+}
+
+/* SEPARATOR */
+.mod-collision-pedal{{{cns}}} .mod-ssmallseparator {
+    display: inline-block;
+    float: left;
+    height: 61px;
+    margin-top: 2px;
+    width: 10px;
+}

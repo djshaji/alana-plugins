@@ -1,0 +1,1 @@
+/usr/bin/cc -fPIC  -Wall -g -Og -msse2 -mfpmath=sse -ffast-math -shared -Wl,-soname,hip2b.so -o hip2b.so CMakeFiles/hip2b.dir/square.c.o  -lm 

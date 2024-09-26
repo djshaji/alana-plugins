@@ -1,0 +1,1 @@
+/usr/bin/cc -fPIC  -Wall -g -std=c99 -msse2 -mfpmath=sse -ffast-math -shared -Wl,-soname,mindi.so -o mindi.so CMakeFiles/mindi.dir/mindi.c.o  -lm 

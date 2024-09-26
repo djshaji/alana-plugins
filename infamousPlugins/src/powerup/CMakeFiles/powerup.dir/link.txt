@@ -1,0 +1,1 @@
+/usr/bin/cc -fPIC  -Wall -g -Og -msse2 -mfpmath=sse -ffast-math -shared -Wl,-soname,powerup.so -o powerup.so CMakeFiles/powerup.dir/powerup.c.o  -lm 

@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC  -Wall -g -Og -msse2 -mfpmath=sse -ffast-math -shared -Wl,-soname,lushlife.so -o lushlife.so CMakeFiles/lushlife.dir/lushlife.cc.o CMakeFiles/lushlife.dir/retuner.cc.o CMakeFiles/lushlife.dir/lfo.cc.o  -lfftw3f -lm -lzita-resampler 

@@ -1,0 +1,16 @@
+@prefix modgui: <http://moddevices.com/ns/modgui#> .
+@prefix lv2:    <http://lv2plug.in/ns/lv2core#> .
+
+<http://guitarix.sourceforge.net/plugins/gx_denoiser2_#_denoiser2_>
+    modgui:gui [
+        modgui:resourcesDirectory <modgui> ;
+        modgui:iconTemplate <modgui/icon-gxdenoiser2.html> ;
+        modgui:stylesheet <modgui/stylesheet-gxdenoiser2.css> ;
+        modgui:screenshot <modgui/screenshot-gxdenoiser2.png> ;
+        modgui:thumbnail <modgui/thumbnail-gxdenoiser2.png> ;
+        modgui:brand "Guitarix " ;
+        modgui:label "GxDenoiser2" ;
+        modgui:model "boxy-small" ;
+        modgui:panel "1-footswitch" ;
+        modgui:color "black" ;
+    ] .

@@ -1,0 +1,1 @@
+/usr/bin/cc -fPIC  -Wall -g -Og -msse2 -mfpmath=sse -ffast-math -shared -Wl,-soname,powercut.so -o powercut.so CMakeFiles/powercut.dir/powercut.c.o  -lm 

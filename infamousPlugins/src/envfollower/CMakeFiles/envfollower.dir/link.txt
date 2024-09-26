@@ -1,0 +1,1 @@
+/usr/bin/cc -fPIC  -Wall -g -std=c99 -Og -msse2 -mfpmath=sse -ffast-math -shared -Wl,-soname,envfollower.so -o envfollower.so CMakeFiles/envfollower.dir/envfollower.c.o CMakeFiles/envfollower.dir/rms_calc.c.o  -lm 

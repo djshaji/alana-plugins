@@ -1,0 +1,10 @@
+@prefix doap:  <http://usefulinc.com/ns/doap#> .
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix ui:   <http://lv2plug.in/ns/extensions/ui#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://shaji.in/plugins/looper>
+	a lv2:Plugin ;
+    doap:name "Looper" ;
+	lv2:binary <looper.so> ;
+	rdfs:seeAlso <looper.ttl> .
